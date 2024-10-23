@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - sudo apt update -qq
+      - sudo apt install --no-install-recommends software-properties-common dirmngr
+      - wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+      - sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+      - sudo apt install -y --no-install-recommends r-base r-base-dev
+      - sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
+      - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+      - pip3 install -r requirements.txt
+      - Rscript requirements.R
+      - python3 app/aws_init.py
+
+env:
+  exported-variables:
+    - AWS_ACCESS_KEY
+    - AWS_SECRET_KEY
