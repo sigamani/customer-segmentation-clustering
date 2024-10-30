@@ -2,7 +2,7 @@
 
 It has been summoned...
 
-The Kraken is Qudo's one-stop shop for feature selection, clustering, inference, and metric production
+The Kraken is a one-stop shop for feature selection, clustering, inference, and metric production
 for Qudo's questionniare data. It relies heavily on Aphrodite to clean and pre-process the data. 
 
 ## Getting Started
